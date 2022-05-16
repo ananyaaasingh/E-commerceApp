@@ -1,0 +1,101 @@
+  <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item m-5" routerLinkActive="active">
+            <a (click)="filterData('mobile')" class="nav-link active" aria-current="page">
+              <img src="./assets/images/img1.png" alt="mobileimg"/>
+              Mobiles</a>
+          </li>
+          <li class="nav-item m-5" >
+            <a (click)="filterData('fashion')" class="nav-link">
+              <img src="./assets/images/img2.png" alt="fashionimg">
+              Fashion</a>
+          </li>
+          <li class="nav-item m-5">
+            <a (click)="filterData('electronics')" class="nav-link">
+              <img src="./assets/images/img3.png" alt="electronicsimg">
+              Electronics</a>
+          </li>
+          <li class="nav-item m-5" >
+            <a (click)="filterData('homedecor')" class="nav-link">
+              <img  src="./assets/images/img4.png" alt="homedecorimg">
+                Decor</a>
+          </li>
+          <li class="nav-item m-5">
+            <a (click)="filterData('toys')" class="nav-link">
+              <img src="./assets/images/img5.png" alt="toysimg">
+              Toys</a>
+          </li>
+          <li class="nav-item m-5">
+            <a (click)="filterData('furniture')" class="nav-link">
+              <img src="./assets/images/img6.png" alt="furnituresimg">
+              Furniture</a>
+          </li>
+          <li class="nav-item m-5">
+            <a (click)="filterData('grocery')" class="nav-link">
+              <img src="./assets/images/img7.png" alt="grocersimg">
+              Grocery</a>
+          </li>
+        </ul>
+        
+    </div>
+  </nav>
+  <div class="container d-flex">
+    <div class=" dropdown">
+      <button class="btn-sm btn-secondary dropdown-toggle m-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a (click)="onHigh()" class="dropdown-item" >High To Low</a></li>
+        <li><a (click)="onLow()" class="dropdown-item" >Low to High</a></li>
+      </ul>
+    </div>
+ 
+    <div class="dropdown">
+      <button class="btn-sm btn-secondary dropdown-toggle m-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Filter By Price Range
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a (click)="filterByPrice(0 , 200)" class="dropdown-item" >Rs.0 - Rs.200</a></li>
+        <li><a (click)="filterByPrice(200 , 400)" class="dropdown-item" >Rs.200 - Rs.400</a></li>
+        <li><a (click)="filterByPrice(400 , 600)" class="dropdown-item" >Rs.400 - Rs.600</a></li>
+        <li><a (click)="filterByPrice(600 , 800)" class="dropdown-item" >Rs.600 - Rs.800</a></li>
+        <li><a (click)="filterByPrice(800 , 1000)" class="dropdown-item" >Rs.800 - Rs.1000</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col m-2" *ngFor = "let row of filterCategory | filter:searchKey:'name' | 
+       paginate: { itemsPerPage: 3,
+         currentPage: page,
+         totalItems : totalLength
+       }"> 
+        <div class="card " style="width: 18rem; height: 24rem;">
+            <img src={{row.image}} height="200px" width="100px" class="card-img-top" alt="m1">
+            
+            <div class="card-body" >
+           <h5 class="card-title">{{row.name}}</h5>
+              <p class="card-text">{{row.description}}</p>
+              <h6>Price - Rs.{{row.price}}</h6>
+              <button *ngIf="!row.showdata" class="btn btn-primary" (click)="addCart(row)">Add to Cart</button>
+  
+              <div *ngIf="row.showdata" class="counter">
+                <div class="btn check" (click)="checkPlus(row)">+</div>
+                <div class="count" >{{row.quantity}}</div>
+                <div class="btn check" (click)="checkMinus(row)">-</div>
+                </div>
+  
+            </div>
+          </div> 
+     </div>
+  
+     </div>
+     
+     <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+  </div></div>

@@ -1,0 +1,34 @@
+<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+   
+      <a class="navbar-brand" href="#">Shoptrix</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" (click)="onHome()">Home</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-geo-alt"></i>
+                    Deliver to this address</a>
+
+            </li>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" [(ngModel)]="searchTerm" (keyup)="search($event)"  placeholder="Search" aria-label="Search" [ngModelOptions]="{standalone : true}">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+              </form>
+         
+        </ul>
+        <form class="d-flex">
+         <button (click)="onNavigate()" class="btn btn-warning"><i class="bi bi-cart-check"></i>
+        <div  style="font-size: 7px;" class="badge bg-danger">{{len}}</div>
+        </button>
+        </form>
+      </div>
+  </nav>
+</div>
+
+
+

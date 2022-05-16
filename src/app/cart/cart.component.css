@@ -1,0 +1,28 @@
+.counter{
+    margin-top : 2px; 
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   }
+   .check{
+    width: 30px;
+    height: 30px;
+    border-radius: 40%;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 900;
+    color: #202020;
+    cursor: pointer;
+   }
+   .count{
+    font-size: 15px;
+    font-weight: 500;
+    color: #202020;
+    margin: 5px;
+   }
+
+  
