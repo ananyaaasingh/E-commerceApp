@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
   currCategory!: string;
   public filterInfo : any
   currId :string = '6284d90cff74d92af11ef084'
-  cartModelObj : cartModel = new cartModel()
   cartData : any = new Array
+  cartModelObj : cartModel = new cartModel()
 
   totalLength! : number 
   page : number = 1
@@ -121,6 +121,7 @@ export class HomeComponent implements OnInit {
   patchDetails(info: any){
    this.path.patchData(info)
     .subscribe( (res : any) =>{
+      console.log(res)
     })
   }
 
@@ -161,86 +162,52 @@ export class HomeComponent implements OnInit {
   //   }
 
   addCart(row : any){
-
-     this.token = localStorage.getItem('token')
-     if(this.token){
-      console.log(this.currId)
-console.log(row)     
-this.cartModelObj = row
-console.log(this.cartModelObj)
-console.log(this.cartData)
-this.cartData.push(this.cartModelObj)
-console.log(this.cartData)
-
-
-     }
-     else{
-       this.route.navigateByUrl('/register')
-     }
-   
+    
+  row.quantity++
+  row.showdata = true
+  this.patchDetails(row)
     
     // this.route.navigateByUrl('/register')
-  // row.quantity++
-  // row.showdata = true
-  // this.modelObj.id  = row._id
-  // this.modelObj.name = row.name;
-  // this.modelObj.description = row.description;
-  // this.modelObj.image = row.image
-  // this.modelObj.quantity = row.quantity
-  // this.modelObj.showdata = row.showdata
-  // this.modelObj.price = row.price
-  // this.modelObj.total = row.total
-  // this.patchDetails(this.modelObj)
   // this.patchCartData(this.modelObj)
   // this.postCartData(this.modelObj)
+
+   //  this.token = localStorage.getItem('token')
+    //  if(this.token){
+    //  console.log(this.currId)
+    //  console.log(row)     
+    //  this.cartModelObj = row
+    //  console.log(this.cartModelObj)
+    //  console.log(this.cartData)
+    //  this.cartData.push(this.cartModelObj)
+    //  console.log(this.cartData)
+    //  }
+    //  else{
+    //    this.route.navigateByUrl('/register')
+    //  }
   }
 
   checkPlus(row : any){
-  // row.quantity++
-  // row.total += row.price
-  // this.modelObj.id  = row._id
-  // this.modelObj.name = row.name;
-  // this.modelObj.description = row.description;
-  // this.modelObj.image = row.image
-  // this.modelObj.quantity = row.quantity
-  // this.modelObj.showdata = row.showdata
-  // this.modelObj.price = row.price
-  // this.modelObj.total = row.total
-  // this.patchDetails(this.modelObj)
+  row.quantity++
+  row.total += row.price
+  this.patchDetails(row)
   // this.findCartId(this.modelObj)
   }
 
   checkMinus(row : any){
 
-  // if(row.quantity > 1){
-  //   row.quantity--
-  //   row.total -= row.price
-  //   this.modelObj.id  = row._id
-  //   this.modelObj.name = row.name;
-  //   this.modelObj.description = row.description;
-  //   this.modelObj.image = row.image
-  //   this.modelObj.quantity = row.quantity
-  //   this.modelObj.showdata = row.showdata
-  //   this.modelObj.price = row.price
-  //   this.modelObj.total = row.total
-  //   this.patchDetails(this.modelObj)
+  if(row.quantity > 1){
+    row.quantity--
+    row.total -= row.price
+    this.patchDetails(row)
     // this.findCartId(this.modelObj)
-  // }
-  // else if(row.quantity ==1 ){
-  //   row.quantity--
-  //   row.total =row.price
-  //   row.showdata = false
-  //   this.modelObj.id  = row._id
-  //   this.modelObj.name = row.name;
-  // this.modelObj.description = row.description;
-  // this.modelObj.image = row.image
-  // this.modelObj.quantity = row.quantity
-  // this.modelObj.showdata = row.showdata
-  // this.modelObj.price = row.price
-  // this.modelObj.total = row.total
-  // this.patchDetails(this.modelObj)
+  }
+  else if(row.quantity ==1 ){
+    row.quantity--
+    row.total =row.price
+    row.showdata = false
+    this.patchDetails(row)
   // this.deleteCart(this.modelObj)
-  // }
+  }
   }
 
   

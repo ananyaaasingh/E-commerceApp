@@ -22,9 +22,10 @@ export class LoginComponent implements OnInit {
 
   
   onlogin(): void{
-  //   console.log(this.email, this.password)
-  // if(this.path.check(this.email, this.password)){
-  // localStorage.setItem('key1', "true");
+    this.path.getUser()
+    .subscribe((res : any) => {
+      console.log(res)
+    })
 
   this.router.navigateByUrl("/cart");
 

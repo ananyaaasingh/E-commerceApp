@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    localStorage.setItem('token' , 'exist')
   this.path.postUser(this.registerForm.value)
  .subscribe((res : any) => {
    console.log(res)

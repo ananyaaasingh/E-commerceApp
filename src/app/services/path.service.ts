@@ -40,7 +40,7 @@ export class PathService {
   }
 
   patchData( data : any){
-    return this.http.patch<any>('http://localhost:5000/products/' + data.id, data)
+    return this.http.patch<any>('http://localhost:5000/products/' + data._id, data)
       .pipe(map((res: any) => {
         return res;
       }))
