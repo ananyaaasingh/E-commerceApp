@@ -1,3 +1,4 @@
+  
   <div class="container-fluid">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
      
@@ -5,37 +6,37 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
           <li class="nav-item m-5" routerLinkActive="active">
             <a (click)="filterData('mobile')" class="nav-link active" aria-current="page">
-              <img src="./assets/images/img1.png" alt="mobileimg"/>
+              <img class="image" src="./assets/images/img1.png" alt="mobileimg"/>
               Mobiles</a>
           </li>
           <li class="nav-item m-5" >
             <a (click)="filterData('fashion')" class="nav-link">
-              <img src="./assets/images/img2.png" alt="fashionimg">
+              <img class="image"  src="./assets/images/img2.png" alt="fashionimg">
               Fashion</a>
           </li>
           <li class="nav-item m-5">
             <a (click)="filterData('electronics')" class="nav-link">
-              <img src="./assets/images/img3.png" alt="electronicsimg">
+              <img class="image" src="./assets/images/img3.png" alt="electronicsimg">
               Electronics</a>
           </li>
           <li class="nav-item m-5" >
             <a (click)="filterData('homedecor')" class="nav-link">
-              <img  src="./assets/images/img4.png" alt="homedecorimg">
+              <img class="image"  src="./assets/images/img4.png" alt="homedecorimg">
                 Decor</a>
           </li>
           <li class="nav-item m-5">
             <a (click)="filterData('toys')" class="nav-link">
-              <img src="./assets/images/img5.png" alt="toysimg">
+              <img class="image"  src="./assets/images/img5.png" alt="toysimg">
               Toys</a>
           </li>
           <li class="nav-item m-5">
             <a (click)="filterData('furniture')" class="nav-link">
-              <img src="./assets/images/img6.png" alt="furnituresimg">
+              <img class="image"  src="./assets/images/img6.png" alt="furnituresimg">
               Furniture</a>
           </li>
           <li class="nav-item m-5">
             <a (click)="filterData('grocery')" class="nav-link">
-              <img src="./assets/images/img7.png" alt="grocersimg">
+              <img class="image"  src="./assets/images/img7.png" alt="grocersimg">
               Grocery</a>
           </li>
         </ul>
@@ -67,7 +68,6 @@
     </div>
   </div>
 
-
   <div class="container">
     <div class="row">
       <div class="col m-2" *ngFor = "let row of filterCategory | filter:searchKey:'name' | 
@@ -77,25 +77,20 @@
        }"> 
         <div class="card " style="width: 18rem; height: 24rem;">
             <img src={{row.image}} height="200px" width="100px" class="card-img-top" alt="m1">
-            
             <div class="card-body" >
            <h5 class="card-title">{{row.name}}</h5>
               <p class="card-text">{{row.description}}</p>
               <h6>Price - Rs.{{row.price}}</h6>
               <button *ngIf="!row.showdata" class="btn btn-primary" (click)="addCart(row)">Add to Cart</button>
-  
               <div *ngIf="row.showdata" class="counter">
                 <div class="btn check" (click)="checkPlus(row)">+</div>
                 <div class="count" >{{row.quantity}}</div>
                 <div class="btn check" (click)="checkMinus(row)">-</div>
                 </div>
-  
             </div>
           </div> 
      </div>
-  
      </div>
-     
      <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
 
-  </div></div>
+  </div>

@@ -1,0 +1,125 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-1 h-80">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-2 ">
+              <h5 class="mb-1 pb-md-0 mb-md-2">Register first!!!!!</h5>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  
+                <div class="row">
+                  <div class="mb-1">
+  
+                    <div class="form-outline">
+                      <label class="form-label" for="name">Name</label>
+                      <input type="text" id="name" class="form-control form-control-lg" formControlName="name" required/>
+                      <div *ngIf="f['name'].invalid && (f['name'].dirty || f['name'].touched)" class="alert alert-danger">
+
+                        <div *ngIf="f['name'].errors?.['required']">
+                          name is required
+                        </div>
+                        <div *ngIf="f['name'].errors?.['minlength']">
+                          Name must be atleast 3 characters long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="mb-1">
+  
+                    <div class="form-outline">
+                      <label class="form-label" for="emailAddress">Email</label>
+                      <input type="email" id="emailAddress" class="form-control form-control-lg" formControlName="email" required/>
+                      <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)" class="alert alert-danger">
+
+                        <div *ngIf="f['email'].errors?.['required']">
+                           Email is required
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+                 
+                </div>
+
+                <div class="row">
+                  <div class="mb-1">
+  
+                    <div class="form-outline">
+                      <label class="form-label" for="number">Number</label>
+                      <input type="number" id="number" class="form-control form-control-lg" formControlName="number" required/>
+                      <div *ngIf="f['number'].invalid && (f['number'].dirty || f['number'].touched)" class="alert alert-danger">
+
+                        <div *ngIf="f['number'].errors?.['required']">
+                           Number is required
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+                 
+                </div>
+
+
+
+                <div class="row">
+                    <div class="mb-1">
+    
+                      <div class="form-outline">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-control form-control-lg" formControlName="password" required/>
+                        <div *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)" class="alert alert-danger">
+
+                          <div *ngIf="f['password'].errors?.['required']">
+                             Password is required
+                          </div>
+                        </div>
+                      </div>
+    
+                    </div>
+                   
+                  </div>
+
+                  <div class="row">
+                    <div class="mb-2">
+                      <div class="form-outline">
+                        <p>Already Registered?</p><a routerLink="/login"> Login Here</a>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="">
+                  <button type="Submit"  [disabled]="!registerForm.valid" class="btn btn-success">Submit</button>
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <router-outlet></router-outlet>
+
+
+  <!-- <form>
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input required minlength="3" maxlength="10" pattern="banana" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" id="firstName" type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf=" firstName.touched && !firstName.valid">
+      <div *ngIf="firstName.errors?.['required']">first name is required</div>
+      <div *ngIf="firstName.errors?.['minlength']">name should be min 3 characters</div>
+      <div *ngIf="firstName.errors?.['pattern']">name should match pattern</div>
+    </div>
+    </div>
+<div class="form-group">
+  <label for="comment">comment</label>
+  <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
+</div>
+<button class="btn btn-primary">submit</button>
+  </form> -->

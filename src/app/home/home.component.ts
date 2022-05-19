@@ -1,7 +1,7 @@
 import { Component, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
 import { PathService } from '../services/path.service';
-import { sharedModel } from '../shared/shared.model';
+import { cartModel } from '../shared/cart.model';
 
 @Component({
   selector: 'app-home',
@@ -10,16 +10,19 @@ import { sharedModel } from '../shared/shared.model';
 })
 export class HomeComponent implements OnInit {
  
-
+  x : number = 0
   len : number = 0 
   info: any
   dataa : any
   id : any
+  token : any
   searchKey : string = ''
   public filterCategory :  any
-  modelObj : sharedModel = new sharedModel()
   currCategory!: string;
   public filterInfo : any
+  currId :string = '6284d90cff74d92af11ef084'
+  cartModelObj : cartModel = new cartModel()
+  cartData : any = new Array
 
   totalLength! : number 
   page : number = 1
@@ -30,6 +33,7 @@ export class HomeComponent implements OnInit {
     this.getAll()
   }
 
+ 
   getAll(){
     this.path.getData()
     .subscribe(res =>{
@@ -97,6 +101,7 @@ export class HomeComponent implements OnInit {
                                                                     
   
   filterData(category : string){
+    this.page = 1;
     this.currCategory = category
     this.path.getPartData(category)
     .subscribe((res) => {
@@ -106,12 +111,12 @@ export class HomeComponent implements OnInit {
     })
     }
 
-  postDetails(row:any)
-  {
-    this.path.postData(row)
-    .subscribe((res:any) => {
-    }) 
-  }
+  // postDetails(row:any)
+  // {
+  //   this.path.postData(row)
+  //   .subscribe((res:any) => {
+  //   }) 
+  // }
 
   patchDetails(info: any){
    this.path.patchData(info)
@@ -119,107 +124,126 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  postCartData(info : any){
-    this.path.postCartData(info)
-    .subscribe((res) => {
-    })
-  }
+  // postCartData(info : any){
+  //   this.path.postCartData(info)
+  //   .subscribe((res) => {
+  //   })
+  // }
 
-  patchCartData(id : any,info : any){
-  this.path.patchCartData(id,info)
-  .subscribe((res) => {
-  })
-  }
+  // patchCartData(id : any,info : any){
+  // this.path.patchCartData(id,info)
+  // .subscribe((res) => {
+  // })
+  // }
 
-   findCartId(info:any){
-    this.path.matchId(info)
-    .subscribe(async (res) => {
-      this.id = await res
-      this.patchCartData(this.id, info)
+  //  findCartId(info:any){
+  //   this.path.matchId(info)
+  //   .subscribe(async (res) => {
+  //     this.id = await res
+  //     this.patchCartData(this.id, info)
 
-    })
-  }
+  //   })
+  // }
 
-  deleteCart(info : any){
-    this.path.matchId(info)
-    .subscribe(async (res) => {
-      this.id = await res
-     this.onDelete(this.id)
+  // deleteCart(info : any){
+  //   this.path.matchId(info)
+  //   .subscribe(async (res) => {
+  //     this.id = await res
+  //    this.onDelete(this.id)
 
-    })
-  }
+  //   })
+  // }
 
-  onDelete(row:any){
-    this.path.deleteData(row)
-    .subscribe(res =>{
-    })
-    }
+  // onDelete(row:any){
+  //   this.path.deleteData(row)
+  //   .subscribe(res =>{
+  //   })
+  //   }
 
   addCart(row : any){
-  row.quantity++
-  row.showdata = true
-  this.modelObj.id  = row._id
-  this.modelObj.name = row.name;
-  this.modelObj.description = row.description;
-  this.modelObj.image = row.image
-  this.modelObj.quantity = row.quantity
-  this.modelObj.showdata = row.showdata
-  this.modelObj.price = row.price
-  this.modelObj.total = row.total
-  this.patchDetails(this.modelObj)
-  this.postCartData(this.modelObj)
+
+     this.token = localStorage.getItem('token')
+     if(this.token){
+      console.log(this.currId)
+console.log(row)     
+this.cartModelObj = row
+console.log(this.cartModelObj)
+console.log(this.cartData)
+this.cartData.push(this.cartModelObj)
+console.log(this.cartData)
+
+
+     }
+     else{
+       this.route.navigateByUrl('/register')
+     }
+   
+    
+    // this.route.navigateByUrl('/register')
+  // row.quantity++
+  // row.showdata = true
+  // this.modelObj.id  = row._id
+  // this.modelObj.name = row.name;
+  // this.modelObj.description = row.description;
+  // this.modelObj.image = row.image
+  // this.modelObj.quantity = row.quantity
+  // this.modelObj.showdata = row.showdata
+  // this.modelObj.price = row.price
+  // this.modelObj.total = row.total
+  // this.patchDetails(this.modelObj)
+  // this.patchCartData(this.modelObj)
+  // this.postCartData(this.modelObj)
   }
 
   checkPlus(row : any){
-  row.quantity++
-  row.total += row.price
-  this.modelObj.id  = row._id
-  this.modelObj.name = row.name;
-  this.modelObj.description = row.description;
-  this.modelObj.image = row.image
-  this.modelObj.quantity = row.quantity
-  this.modelObj.showdata = row.showdata
-  this.modelObj.price = row.price
-  this.modelObj.total = row.total
-  this.patchDetails(this.modelObj)
-  this.findCartId(this.modelObj)
+  // row.quantity++
+  // row.total += row.price
+  // this.modelObj.id  = row._id
+  // this.modelObj.name = row.name;
+  // this.modelObj.description = row.description;
+  // this.modelObj.image = row.image
+  // this.modelObj.quantity = row.quantity
+  // this.modelObj.showdata = row.showdata
+  // this.modelObj.price = row.price
+  // this.modelObj.total = row.total
+  // this.patchDetails(this.modelObj)
+  // this.findCartId(this.modelObj)
   }
 
   checkMinus(row : any){
 
-  if(row.quantity > 1){
-    row.quantity--
-    row.total -= row.price
-    this.modelObj.id  = row._id
-    this.modelObj.name = row.name;
-    this.modelObj.description = row.description;
-    this.modelObj.image = row.image
-    this.modelObj.quantity = row.quantity
-    this.modelObj.showdata = row.showdata
-    this.modelObj.price = row.price
-    this.modelObj.total = row.total
-    this.patchDetails(this.modelObj)
-    this.findCartId(this.modelObj)
-  }
-  else if(row.quantity ==1 ){
-    row.quantity--
-    row.total =row.price
-    row.showdata = false
-    this.modelObj.id  = row._id
-    this.modelObj.name = row.name;
-  this.modelObj.description = row.description;
-  this.modelObj.image = row.image
-  this.modelObj.quantity = row.quantity
-  this.modelObj.showdata = row.showdata
-  this.modelObj.price = row.price
-  this.modelObj.total = row.total
-  this.patchDetails(this.modelObj)
-  this.deleteCart(this.modelObj)
-  }
+  // if(row.quantity > 1){
+  //   row.quantity--
+  //   row.total -= row.price
+  //   this.modelObj.id  = row._id
+  //   this.modelObj.name = row.name;
+  //   this.modelObj.description = row.description;
+  //   this.modelObj.image = row.image
+  //   this.modelObj.quantity = row.quantity
+  //   this.modelObj.showdata = row.showdata
+  //   this.modelObj.price = row.price
+  //   this.modelObj.total = row.total
+  //   this.patchDetails(this.modelObj)
+    // this.findCartId(this.modelObj)
+  // }
+  // else if(row.quantity ==1 ){
+  //   row.quantity--
+  //   row.total =row.price
+  //   row.showdata = false
+  //   this.modelObj.id  = row._id
+  //   this.modelObj.name = row.name;
+  // this.modelObj.description = row.description;
+  // this.modelObj.image = row.image
+  // this.modelObj.quantity = row.quantity
+  // this.modelObj.showdata = row.showdata
+  // this.modelObj.price = row.price
+  // this.modelObj.total = row.total
+  // this.patchDetails(this.modelObj)
+  // this.deleteCart(this.modelObj)
+  // }
   }
 
-  onNavigate(){
-    this.route.navigateByUrl('/cart')
-  }
+  
 
 }
+

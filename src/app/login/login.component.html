@@ -1,0 +1,51 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-2 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h5 class="mb-1 pb-2 pb-md-0 mb-md-3">Login here</h5>
+              <form >
+                <div class="row">
+                  <div class="mb-1">
+  
+                    <div class="form-outline">
+                      <label class="form-label" for="emailAddress">Email</label>
+                      <input type="email" id="emailAddress" class="form-control " [(ngModel)]= "email"  [ngModelOptions]="{standalone: true}">
+                    </div>
+  
+                  </div>
+                 
+                </div>
+                <div class="row">
+                    <div class="mb-1">
+                       <div class="form-outline">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" [(ngModel)] = "password" [ngModelOptions]="{standalone: true}" >
+                       </div>
+                      </div>
+                </div>
+
+                <div class="row">
+                  <div class="mb-1">
+                    <div class="form-outline">
+                      <p>Dont't have an account?</p>
+                      <a routerLink="/register">Register Here</a>
+                    </div>
+                  </div>
+                </div>
+               
+  
+                <div class="mt-4 pt-2">
+                  <input class="btn btn-success btn-md" type="button" value="Submit" (click)="onlogin()" />
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <router-outlet></router-outlet>

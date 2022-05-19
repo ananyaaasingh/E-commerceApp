@@ -29,7 +29,7 @@
                 <td *ngIf="!row.showdata">Rs. {{row.total}}</td>
                  
 
-                <td><button class="btn-sm btn-danger" (click)="onDelete(row)">Delete</button></td>
+                <!-- <td><button class="btn-sm btn-danger" (click)="onDelete(row)">Delete</button></td> -->
                 
             </tr>
             
@@ -41,9 +41,11 @@
         <div class="col-4">Grand Total : Rs.{{this.amount}}</div>
 
      <div class="col-4">
-        <button type="button" class="btn-sm btn-warning m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="collectCartData()">
+        <!-- <button type="button" class="btn-sm btn-warning m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="collectCartData()">
           Send Invoice
-        </button>
+        </button> -->
+
+        <button class="btn btn-outline-primary m-1" (click)="onCheckout()">Checkout</button>
         
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -55,7 +57,9 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form class="contact-form" (submit)="sendEmail($event)">
+
+                <form class="contact-form" >
+                  <!-- <form class="contact-form" (submit)="sendEmail($event)"> -->
 
                   <div class="row">
                     <div class="mb-2">

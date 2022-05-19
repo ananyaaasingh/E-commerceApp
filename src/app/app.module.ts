@@ -12,6 +12,12 @@ import { FilterPipe } from './shared/filter.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PaymentComponent } from './payment/payment.component';
+import { OrderComponent } from './order/order.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +25,12 @@ import { ToastrModule } from 'ngx-toastr';
     CartComponent,
     HeaderComponent,
     FooterComponent,
-    FilterPipe
+    FilterPipe,
+    CheckoutComponent,
+    PaymentComponent,
+    OrderComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -29,8 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
-    
+    ReactiveFormsModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ require('./db/mongoose')
 const Product = require('./models/product')
 const productRouter = require('./routers/product')
 const cartRouter = require('./routers/cart')
+const userRouter = require('./routers/user')
+
 const app = express()
 const port = 5000
 var cors = require('cors')
@@ -11,6 +13,7 @@ app.use(cors())
 app.use(express.json())
 app.use(productRouter)
 app.use(cartRouter)
+app.use(userRouter)
 
 app.use(function (req,res,next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');

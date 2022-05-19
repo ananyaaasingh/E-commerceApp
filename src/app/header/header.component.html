@@ -1,34 +1,66 @@
 <div class="container-fluid">
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-   
-      <a class="navbar-brand" href="#">Shoptrix</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" (click)="onHome()">Home</a>
-              </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="bi bi-geo-alt"></i>
-                    Deliver to this address</a>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ebfaff;">
 
-            </li>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" [(ngModel)]="searchTerm" (keyup)="search($event)"  placeholder="Search" aria-label="Search" [ngModelOptions]="{standalone : true}">
-                <button class="btn btn-outline-primary" type="submit">Search</button>
-              </form>
-         
-        </ul>
+    <a class="navbar-brand" href="#">Shoptrix</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" (click)="onHome()">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+              class="bi bi-geo-alt"></i>
+
+            {{pincode}}</a>
+        </li>
         <form class="d-flex">
-         <button (click)="onNavigate()" class="btn btn-warning"><i class="bi bi-cart-check"></i>
-        <div  style="font-size: 7px;" class="badge bg-danger">{{len}}</div>
-        </button>
+          <input class="form-control me-2" type="search" [(ngModel)]="searchTerm" (keyup)="search($event)"
+            placeholder="Search" aria-label="Search" [ngModelOptions]="{standalone : true}">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
-      </div>
+
+      </ul>
+      <form class="d-flex">
+        <button (click)="onNavigate()" class="btn btn-warning"><i class="bi bi-cart-check"></i>
+          <div style="font-size: 7px;" class="badge bg-danger">{{len}}</div>
+        </button>
+      </form>
+    </div>
   </nav>
 </div>
 
+<div class="container">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Address</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="mb-2">
+                <div class="form-outline">
+                  <label for="pincode" class="form-label">Pincode</label>
+                  <input type="Number" id="pincode" class="form-control form-control-lg" [(ngModel)]="pincode" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-primary" (click)="savePincode()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PathService } from '../services/path.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ export class HeaderComponent implements OnInit {
   data : any
   len : number | undefined
   public searchTerm : string = ''
+  pincode : any = '222334'
 
   constructor( public route : Router, public path : PathService) { }
 
@@ -29,14 +31,20 @@ export class HeaderComponent implements OnInit {
   }
 
   onHome(){
-    this.route.navigateByUrl('/home')
+    this.route.navigateByUrl('home')
   }
  
 
   onNavigate(){
-    this.route.navigateByUrl('/cart')
+    this.route.navigateByUrl('cart')
   }
 
-  
+  savePincode(){
+    console.log(this.pincode)
+    sessionStorage.setItem('pincode', this.pincode)
+  }
+  // changePin(data : any){
+  //   this.pincode = data
+  // }
 
 }
