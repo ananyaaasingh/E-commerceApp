@@ -1,15 +1,15 @@
 export class cartModel {
- cartData!: [
-        {
-            productName: String,
-            description: String,
-            image: String,
-            quantity: Number,
-            showData: Boolean,
-            category: String,
-            price: Number,
-            total: Number,
-            amount: Number
-        }
-    ]
+//  cartData!: [
+//         {
+            productName: String = ''
+            description: String = ''
+            image: String = ''
+            quantity: Number = 0
+            showData: Boolean = false
+            category: String = ''
+            price: Number = 0
+            total: Number = 0
+            amount: Number = 0
+    //     }
+    // ]
 }

@@ -76,6 +76,7 @@ export class PathService {
      return res;
    }))
    }
+
    
    patchUser(id : any, data : any){
    return this.http.patch<any>('http://localhost:5000/user/' + id, data)
@@ -116,51 +117,52 @@ export class PathService {
     })
     this.product.next(this.cartList)
   }
-  // postCartData(data : any){
-  //   return this.http.post<any>('http://localhost:5000/cart' , data)
-  //   .pipe(map((res : any) =>{
-  //     // this.product.next(res)
-  //   this.cartList.push(res)
-  //   this.product.next(this.cartList)
-  //   console.log(this.cartList)
-  //     return res
-  //   }))
-  // }
 
-  // patchCartData(id : any,data:any) {
-  //   return this.http.patch<any>('http://localhost:5000/cart/'+id , data)
-  //   .pipe(map((res : any) => {
-  //     return res
-  //   }))
-  // }
+  postCartData(data : any){
+    return this.http.post<any>('http://localhost:5000/cart' , data)
+    .pipe(map((res : any) =>{
+      // this.product.next(res)
+    this.cartList.push(res)
+    this.product.next(this.cartList)
+    console.log(this.cartList)
+      return res
+    }))
+  }
 
-  // matchId(data : any){
-  //   return this.http.get<any>('http://localhost:5000/cart')
-  //   .pipe(map((res : any) => {
-  //     for(this.i = 0; this.i<res.length; this.i++ ){
-  //       if(res[this.i].name === data.name){
-  //         return res[this.i]._id;
-  //       }
-  //     }
+  patchCartData(id : any, data:any) {
+    return this.http.patch<any>('http://localhost:5000/cart/'+id , data)
+    .pipe(map((res : any) => {
+      return res
+    }))
+  }
+
+  matchId(data : any){
+    return this.http.get<any>('http://localhost:5000/cart')
+    .pipe(map((res : any) => {
+      for(this.i = 0; this.i<res.length; this.i++ ){
+        if(res[this.i].name === data.name){
+          return res[this.i]._id;
+        }
+      }
      
-  //   })) 
-  //  }
+    })) 
+   }
 
-// getThisData(){
-//     return this.http.get<any>('http://localhost:5000/cart')
-//     .pipe(map((res : any) => {
-//       return (res);
-//     }))
-// }
+getThisData(){
+    return this.http.get<any>('http://localhost:5000/cart')
+    .pipe(map((res : any) => {
+      return (res);
+    }))
+}
 
-// deleteData(id:number){
-//   return this.http.delete<any>('http://localhost:5000/cart/' + id)
-//   .pipe(map((res : any) => {
-//     this.cartList.pop();
-//     this.product.next(this.cartList)
-//     return res;
-//   }))
-//  }
+deleteData(id:number){
+  return this.http.delete<any>('http://localhost:5000/cart/' + id)
+  .pipe(map((res : any) => {
+    this.cartList.pop();
+    this.product.next(this.cartList)
+    return res;
+  }))
+ }
 
 
 

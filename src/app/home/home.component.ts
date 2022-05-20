@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   public filterCategory :  any
   currCategory!: string;
   public filterInfo : any
-  currId :string = '6284d90cff74d92af11ef084'
+  currId :string = '6284b7d410ef3421d8e6d1cc'
   cartData : any = new Array
   cartModelObj : cartModel = new cartModel()
 
@@ -121,76 +121,57 @@ export class HomeComponent implements OnInit {
   patchDetails(info: any){
    this.path.patchData(info)
     .subscribe( (res : any) =>{
-      console.log(res)
     })
   }
 
-  // postCartData(info : any){
-  //   this.path.postCartData(info)
-  //   .subscribe((res) => {
-  //   })
-  // }
+  postCartData(info : any){
+    this.path.postCartData(info)
+    .subscribe((res) => {
+    })
+  }
 
-  // patchCartData(id : any,info : any){
-  // this.path.patchCartData(id,info)
-  // .subscribe((res) => {
-  // })
-  // }
+  patchCartData(id : any,info : any){
+  this.path.patchCartData(id,info)
+  .subscribe((res) => {
+  })
+  }
 
-  //  findCartId(info:any){
-  //   this.path.matchId(info)
-  //   .subscribe(async (res) => {
-  //     this.id = await res
-  //     this.patchCartData(this.id, info)
+   findCartId(info:any){
+    this.path.matchId(info)
+    .subscribe(async (res) => {
+      this.id = await res
+      this.patchCartData(this.id, info)
+    })
+  }
 
-  //   })
-  // }
+  deleteCart(info : any){
+    this.path.matchId(info)
+    .subscribe(async (res) => {
+      this.id = await res
+     this.onDelete(this.id)
 
-  // deleteCart(info : any){
-  //   this.path.matchId(info)
-  //   .subscribe(async (res) => {
-  //     this.id = await res
-  //    this.onDelete(this.id)
+    })
+  }
 
-  //   })
-  // }
-
-  // onDelete(row:any){
-  //   this.path.deleteData(row)
-  //   .subscribe(res =>{
-  //   })
-  //   }
+  onDelete(row:any){
+    this.path.deleteData(row)
+    .subscribe(res =>{
+    })
+    }
 
   addCart(row : any){
     
   row.quantity++
   row.showdata = true
   this.patchDetails(row)
-    
-    // this.route.navigateByUrl('/register')
-  // this.patchCartData(this.modelObj)
-  // this.postCartData(this.modelObj)
-
-   //  this.token = localStorage.getItem('token')
-    //  if(this.token){
-    //  console.log(this.currId)
-    //  console.log(row)     
-    //  this.cartModelObj = row
-    //  console.log(this.cartModelObj)
-    //  console.log(this.cartData)
-    //  this.cartData.push(this.cartModelObj)
-    //  console.log(this.cartData)
-    //  }
-    //  else{
-    //    this.route.navigateByUrl('/register')
-    //  }
+  this.postCartData(row)
   }
 
   checkPlus(row : any){
   row.quantity++
   row.total += row.price
   this.patchDetails(row)
-  // this.findCartId(this.modelObj)
+  this.findCartId(row)
   }
 
   checkMinus(row : any){
@@ -199,14 +180,14 @@ export class HomeComponent implements OnInit {
     row.quantity--
     row.total -= row.price
     this.patchDetails(row)
-    // this.findCartId(this.modelObj)
+    this.findCartId(row)
   }
   else if(row.quantity ==1 ){
     row.quantity--
     row.total =row.price
     row.showdata = false
     this.patchDetails(row)
-  // this.deleteCart(this.modelObj)
+  this.deleteCart(row)
   }
   }
 

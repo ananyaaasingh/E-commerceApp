@@ -27,45 +27,47 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getAll();
+    this.getAll();
   }
 
-  // onDelete(row: any) {
-  //   console.log(row);
-  //   this.path.deleteData(row.id).subscribe((res) => {
-  //     this.amount -= row.total;
-  //     row.showdata = false;
-  //     row.quantity = 0;
-  //     row.total = row.price;
-  //     this.findProductId(row);
-  //     this.getData();
-  //   });
-  // }
+  onDelete(row: any) {
+    console.log(row);
+    this.path.deleteData(row._id).subscribe((res) => {
+      this.amount -= row.total;
+      row.showdata = false;
+      row.quantity = 0;
+      row.total = row.price;
+      this.findProductId(row);
+      this.getData();
+    });
+  }
 
   
 
-  // getData() {
-  //   this.path.getThisData().subscribe((res) => {
-  //     this.data = res;
-  //   });
-  // }
-
-  // getAll() {
-  //   this.path.getThisData().subscribe((res) => {
-  //     this.data = res;
-  //     this.data.forEach((a: any) => {
-  //       this.amount += a.total;
-  //     });
-  //   });
-  // }
-
-  patchProductData(id: any, info: any) {
-    this.path.patchProductData(id, info).subscribe((res) => {});
+  getData() {
+    this.path.getThisData().subscribe((res) => {
+      this.data = res;
+    });
   }
 
-  // patchCartData(id: any, info: any) {
-  //   this.path.patchCartData(id, info).subscribe((res) => {});
-  // }
+  getAll() {
+    this.path.getThisData().subscribe((res) => {
+      this.data = res;
+      this.data.forEach((a: any) => {
+        this.amount += a.total;
+      });
+    });
+  }
+
+  patchProductData(id: any, info: any) {
+    this.path.patchProductData(id, info)
+    .subscribe((res) => {});
+  }
+
+  patchCartData(id: any, info: any) {
+    this.path.patchCartData(id, info)
+    .subscribe((res) => {});
+  }
 
   findProductId(info: any) {
     this.path.matchProductId(info).subscribe(async (res) => {
@@ -75,54 +77,30 @@ export class CartComponent implements OnInit {
   }
 
   checkPlus(row: any) {
-    // row.quantity++;
-    // row.total += row.price;
-    // this.amount += row.price;   
-    // this.modelObj.id = row._id;
-    // this.modelObj.name = row.name;
-    // this.modelObj.description = row.description;
-    // this.modelObj.image = row.image;
-    // this.modelObj.quantity = row.quantity;
-    // this.modelObj.showdata = row.showdata;
-    // this.modelObj.price = row.price;
-    // this.modelObj.total = row.total;
-    // this.patchCartData(row._id, row);
-    // this.findProductId(this.modelObj);
+    row.quantity++;
+    row.total += row.price;
+    this.amount += row.price;   
+    this.patchCartData(row._id, row);
+    this.findProductId(row);
 
   }
 
   checkMinus(row: any) {
-    // row.quantity--;
-    // if (row.quantity == 0) {
-    //   row.amount = 0;
-    //   row.showdata = false;
-    //   this.modelObj.id = row._id;
-    //   this.modelObj.name = row.name;
-    //   this.modelObj.description = row.description;
-    //   this.modelObj.image = row.image;
-    //   this.modelObj.quantity = row.quantity;
-    //   this.modelObj.showdata = row.showdata;
-    //   this.modelObj.price = row.price;
-    //   this.modelObj.total = row.total;
-    //   this.onDelete(this.modelObj);
-    // } else {
-    //   row.total -= row.price;
-    //   this.amount -= row.price;
-    //   this.modelObj.id = row._id;
-    //   this.modelObj.name = row.name;
-    //   this.modelObj.description = row.description;
-    //   this.modelObj.image = row.image;
-    //   this.modelObj.quantity = row.quantity;
-    //   this.modelObj.showdata = row.showdata;
-    //   this.modelObj.price = row.price;
-    //   this.modelObj.total = row.total;
-    //   this.patchCartData(row._id, row);
-    //   this.findProductId(this.modelObj);
-    // }
+    row.quantity--;
+    if (row.quantity == 0) {
+      row.amount = 0;
+      row.showdata = false;
+      this.onDelete(row);
+    } else {
+      row.total -= row.price;
+      this.amount -= row.price;
+      this.patchCartData(row._id, row);
+      this.findProductId(row);
+    }
   }
 
   onCheckout(){
-this.route.navigateByUrl('/checkout')
+  this.route.navigateByUrl('/checkout')
   }
 
   // collectCartData(){
